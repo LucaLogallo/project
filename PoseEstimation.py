@@ -76,13 +76,15 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,
                                                         255, 255), 2, cv2.LINE_AA
                         )
-            
-            #logica giocino stupido 
-            if angle < 130: #se langolo tra 11(left_shoulder) e 13(left_elbow) / 13(left_elbow) e 15(left_wrist) è minore di 130 allora sono comunista
-              stage = "comunista"
-            if angle > 140 and stage == 'comunista': #se langolo tra 11(left_shoulder) e 13(left_elbow) / 13(left_elbow) e 15(left_wrist) è maggiore di 140 e sono ancora comunista divento fascista
-              stage = "fascista"
-              
+
+            # logica giocino stupido
+            # se langolo tra 11(left_shoulder) e 13(left_elbow) / 13(left_elbow) e 15(left_wrist) è minore di 130 allora sono comunista
+            if angle < 130:
+                stage = "comunista"
+            # se langolo tra 11(left_shoulder) e 13(left_elbow) / 13(left_elbow) e 15(left_wrist) è maggiore di 140 e sono ancora comunista divento fascista
+            if angle > 140 and stage == 'comunista':
+                stage = "fascista"
+
             print(stage)
 
         except:
