@@ -1,3 +1,4 @@
+# motion funzionante con lo style
 import mediapipe as mp
 import cv2
 mp_drawing = mp.solutions.drawing_utils
