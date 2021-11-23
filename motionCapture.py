@@ -1,3 +1,5 @@
+# motion "didattico" modifiche da fare qui e se funzionanti da implementare nel a
+
 # importo le librerie che mi servono
 import cv2  # importo opencv che è una libreria che mi serve per analizzare ogni video o immagine , prendere immagini dalla videocamera
 import mediapipe as mp  # ho importato la libreria che mi serve per catturare il movimento
