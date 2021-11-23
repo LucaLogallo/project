@@ -8,23 +8,23 @@ mp_drawing = mp.solutions.drawing_utils  # drawn utility
 mp_holistic = mp.solutions.holistic  # modello holistic
 
 # importo il materiale per far funzionare la fotocamera del computer
-cap = cv2.VideoCapture(0)  # array di videocamere presenti nel computer
-while cap.isOpened():  # quando cap è aperto allora leggerà tutto quello che c'è da leggere e attiverà la videocamera ecc
-    # praticamente legge quello che gli da dalla videocamera con cap.read
-    ret, frame = cap.read()
-    cv2.imshow('Raw Webcam Feed', frame)
+# cap = cv2.VideoCapture(0)  # array di videocamere presenti nel computer
+# while cap.isOpened():  # quando cap è aperto allora leggerà tutto quello che c'è da leggere e attiverà la videocamera ecc
+# praticamente legge quello che gli da dalla videocamera con cap.read
+#    ret, frame = cap.read()
+#    cv2.imshow('Raw Webcam Feed', frame)
 
-    # può non funzionare se lo starto da qui quindi copiare nella console python
-    if cv2.waitKey(10) & 0xFF == ord('q'):
-        break
+# può non funzionare se lo starto da qui quindi copiare nella console python
+#    if cv2.waitKey(10) & 0xFF == ord('q'):
+#        break
 
 # quando chiudo la finestra di python potrebbe continuare a prendere informazioni allora con il cap.release interrompo la cattura da parte di cv2 e con cv2 destroy all windows chiudo tutte le finestre aperte e i processi correlati ad esse
-cap.release()
-mp.destroyAllWindows()
-cv2.destroyAllWindows()
+# cap.release()
+# mp.destroyAllWindows()
+# cv2.destroyAllWindows()
 
-cap.release()
-cv2.destroyAllWindows()
+# cap.release()
+# cv2.destroyAllWindows()
 
 # in queste righe ho collegato la videocamera al codice e ho deciso quale dispositivo di cattura video usare
 
@@ -41,6 +41,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         # faccio la rilevazione
         results = holistic.process(image)
+        # cercare il modo di salvare questi file direttamente in un foglio di testo in modo tale da cercare di mettere in ascolto il pacchetto per rilevare il movimento
         print(results.face_landmarks)
 
         #face_landmarks, pose_landmarks, left_hand_landmarks, right_hand_landmarks
@@ -48,21 +49,21 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         # Draw face landmarks
         mp_drawing.draw_landmarks(
-            image, results.face_landmarks, mp_holistic.FACE_CONNECTIONS)
+            image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION)
 
         # Right hand
-        mp_drawing.draw_landmarks(
-            image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
+        # mp_drawing.draw_landmarks(
+        # image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
 
         # Left Hand
-        mp_drawing.draw_landmarks(
-            image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
+        # mp_drawing.draw_landmarks(
+        # image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
 
         # Pose Detections
-        mp_drawing.draw_landmarks(
-            image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+       # mp_drawing.draw_landmarks(
+        # image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
 
-        cv2.imshow("Motion Capture".frame)
+        cv2.imshow("Motion Capture", frame)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
@@ -85,7 +86,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # Make Detections
         results = holistic.process(image)
-        # print(results.face_landmarks)
+        print(results.face_landmarks)
 
         # face_landmarks, pose_landmarks, left_hand_landmarks, right_hand_landmarks
 
