@@ -86,6 +86,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5, mod
                 stage = "fascista"
 
             print(stage)
+            f = open('position.txt', 'a')
+            f.write(
+                str(tuple(np.multiply(elbow, [1280, 720]).astype(int))) + "\n")
 
         except:
             pass
